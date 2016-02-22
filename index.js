@@ -10,7 +10,7 @@ const userInfo = {
 };
 
 const HELP_MESSAGE = `
-Hi! I'm Yayu bot v1.0.
+Hi! I'm fbot v1.0.
 I'm a bot who google things.
 I'm kinda dumb so please don't break me ;_;
 
