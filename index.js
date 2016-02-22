@@ -45,13 +45,13 @@ function evaluate(message, api) {
   const sendTypingIndicator = api.sendTypingIndicator;
   const body = message.body;
   const threadID = message.threadID;
-  const text = body.trim();
+  const text = body.trim().toLowerCase();
 
   switch (true) {
     // Google for something.
     case /^google/.test(text):
       const query = text.replace(/^google/, '');
-      sendTypingIndicator(threadID, (_, end) => end());
+      sendTypingIndicator(threadID, () => {});
       return google(query, (err, next, results) => {
         if (err) return console.log(err);
         nextPage = next;
@@ -76,6 +76,7 @@ function evaluate(message, api) {
 
     case /^show\s[1-5]/.test(text):
       const linkNumber = text.replace(/^show\s/, '');
+      sendTypingIndicator(threadID, () => {});
 
       return request(pages[linkNumber - 1].href, (error, response, responseBody) => {
         if (!error && response.statusCode === 200) {
@@ -84,7 +85,8 @@ function evaluate(message, api) {
             .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
             .replace(/<(?:.|\n)*?>/gm, '')
             .replace(/\s+/g, ' ')
-            .replace(/\n+/g, '\n');
+            .replace(/\n+/g, '\n')
+            .substring(0, 10000);
 
           return sendMessage(plainTextResponse, threadID);
         }
