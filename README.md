@@ -3,9 +3,13 @@ Hi! I'm fbot. I'm a facebook bot who google things. I'm kinda dumb so please don
 
 ## Installation.
 To use your own instance of this bot, clone the repo
-`` git clone https://github.com/datyayu/fbot.git``
+``` 
+  git clone https://github.com/datyayu/fbot.git
+```
 and install the dependencies
-`` npm install ``
+```
+  npm install 
+```
 
 Also, make sure your bot has a fb account.
 
